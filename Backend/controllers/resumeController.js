@@ -119,7 +119,10 @@ export const deleteResume = async (req, res) => {
 
     // delete thumbnail
     if (resume.thumbnailLink) {
-      const oldThumbnail = path.join(uploadsFolder, resume.thumbnailLink);
+      const oldThumbnail = path.join(
+        uploadsFolder,
+        path.basename(resume.thumbnailLink)
+      );
       if (fs.existsSync(oldThumbnail)) fs.unlinkSync(oldThumbnail);
     }
 
@@ -127,12 +130,18 @@ export const deleteResume = async (req, res) => {
     if (resume.profileInfo?.profilePreviewUrl) {
       const oldProfile = path.join(
         uploadsFolder,
-        resume.profileInfo.profilePreviewUrl
+        path.basename(resume.profileInfo.profilePreviewUrl)
       );
       if (fs.existsSync(oldProfile)) fs.unlinkSync(oldProfile);
     }
-
-    await Resume.findOneAndDelete({ _id: req.params.id, userId: req.user._id });
+    // delete Resume doc
+    const deleted = await Resume.findOneAndDelete({
+      _id: req.params.id,
+      userId: req.user._id,
+    });
+    if (!deleted) {
+      return res.status(404).json({ message: "Resume not found" });
+    }
     res.status(200).json({ message: "Resume deleted successfully" });
   } catch (error) {
     res
