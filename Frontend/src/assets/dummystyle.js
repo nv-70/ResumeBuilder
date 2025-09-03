@@ -46,8 +46,9 @@ export const landingPageStyles = {
 
   // Hero section
   heroSection: "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20",
-  heroGrid: "flex flex-wrap justify-between gap-10 lg:gap-12 items-center",
-  heroLeft: "space-y-8",
+  heroGrid:
+    "flex flex-col lg:flex-row justify-between gap-10 lg:gap-12 items-center", // fixed
+  heroLeft: "space-y-8 flex-1", // ensure left content takes available space
   tagline:
     "inline-flex items-center gap-2 sm:gap-3 px-4 py-2 bg-gradient-to-r from-violet-100 to-fuchsia-100 border border-violet-200 text-violet-700 rounded-full font-bold text-xs sm:text-sm",
   heading: "text-4xl sm:text-6xl lg:text-8xl font-black leading-tight",
@@ -57,6 +58,7 @@ export const landingPageStyles = {
   description:
     "text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-lg font-medium",
   ctaButtons: "flex flex-col sm:flex-row gap-4",
+  heroIllustration: "flex-1 max-w-lg", // optional: controls right side width
 
   // Buttons
   primaryButton:
