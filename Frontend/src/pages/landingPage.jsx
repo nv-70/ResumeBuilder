@@ -477,6 +477,16 @@ const landingPage = () => {
           </p>
         </div>
       </footer>
+      {/*  MODAL FOR LOGIN/SIGNUP */}
+      <Modal isOpen={openAuthModal} onClose={()=> {
+        setOpenAuthModal(false);
+        setCurrentPage("login");
+      }} hideHeader>
+        <div>
+          {currentPage === "login" && <Login setCurrentPage={setCurrentPage} />}
+          {currentPage === "signup" && <SignUp setCurrentPage={setCurrentPage} />}
+        </div>
+      </Modal>
     </div>
   );
 };
