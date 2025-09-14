@@ -35,7 +35,7 @@ export const createResume = async (req, res) => {
     };
 
     const newResume = await Resume.create({
-      userId: req.user.id,
+      userId: req.user._id,
       title,
       ...defaultResumeData,
       ...req.body, // allow overriding fields from client
@@ -45,7 +45,7 @@ export const createResume = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Error creating resume", error: error.message });
+      .json({ message: "failed to create resume", error: error.message });
   }
 };
 
@@ -55,11 +55,11 @@ export const getUserResumes = async (req, res) => {
     const resumes = await Resume.find({ userId: req.user._id }).sort({
       updatedAt: -1,
     });
-    res.status(200).json(resumes);
+    res.json(resumes);
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Error fetching resumes", error: error.message });
+      .json({ message: "failed to get resumes", error: error.message });
   }
 };
 
@@ -72,11 +72,11 @@ export const getResumeById = async (req, res) => {
     });
     if (!resume) return res.status(404).json({ message: "Resume not found" });
 
-    res.status(200).json(resume);
+    res.json(resume);
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Error fetching resume", error: error.message });
+      .json({ message: "failed to get resumes", error: error.message });
   }
 };
 
@@ -95,7 +95,7 @@ export const updateResume = async (req, res) => {
     Object.assign(resume, req.body);
     const savedResume = await resume.save();
 
-    res.status(200).json(savedResume);
+    res.json(savedResume);
   } catch (error) {
     res
       .status(500)
@@ -114,6 +114,7 @@ export const deleteResume = async (req, res) => {
       return res
         .status(404)
         .json({ message: "Resume not found or not authorized" });
+//creates a uploads folders and store the resume there
 
     const uploadsFolder = path.join(process.cwd(), "uploads");
 
@@ -140,9 +141,9 @@ export const deleteResume = async (req, res) => {
       userId: req.user._id,
     });
     if (!deleted) {
-      return res.status(404).json({ message: "Resume not found" });
+      return res.status(404).json({ message: "Resume not found or not authorized" });
     }
-    res.status(200).json({ message: "Resume deleted successfully" });
+    res.json({ message: "Resume deleted successfully" });
   } catch (error) {
     res
       .status(500)

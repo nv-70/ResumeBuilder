@@ -13,7 +13,6 @@ const ResumeSchema = new mongoose.Schema(
     },
     thumbnailLink: {
       type: String,
-      required: false,
     },
     template: {
       theme: String,
@@ -21,11 +20,12 @@ const ResumeSchema = new mongoose.Schema(
     },
     profileInfo: {
       profilePreviewUrl: String,
-      fullName: { type: String, required: true },
+      fullName: String ,
       designation: String,
+      summary:String,
     },
     contactInfo: {
-      email: { type: String, required: true },
+      email: String,
       phone: String,
       location: String,
       linkedin: String,
@@ -76,7 +76,7 @@ const ResumeSchema = new mongoose.Schema(
         progress: Number,
       },
     ],
-    interests: [String], // ✅ Corrected
+    interests: [String],
   },
   {
     timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },

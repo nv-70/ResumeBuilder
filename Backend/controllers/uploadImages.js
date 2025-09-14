@@ -4,7 +4,7 @@ import path from "path";
 import Resume from "../models/resumeModel.js";
 import upload from "../middleware/uploadMiddleware.js";
 
-export const uploadResumeImages = (req, res) => {
+export const uploadResumeImages = async (req, res) => {
   try {
     // CONFIGURE MULTER TO HANDLE IMAGES
     upload.fields([{ name: "thumbnail" }, { name: "profileImage" }])(
@@ -67,11 +67,11 @@ export const uploadResumeImages = (req, res) => {
         });
       }
     );
-  } catch (error) {
-    console.error("Error uploading images:", error);
+  } catch (err) {
+    console.error("Error uploading images:", err);
     res.status(500).json({
-      message: "fail to upload images",
-      error: error.message,
+      message: "failed to upload images",
+      error: err.message,
     });
   }
 };
