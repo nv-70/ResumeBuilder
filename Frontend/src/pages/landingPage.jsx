@@ -2,16 +2,19 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LayoutTemplate, Menu, X } from "lucide-react";
 import { landingPageStyles } from "../assets/dummystyle";
-import { userContext } from "../context/userContext";
-import { ProfileInfoCard } from "../components/card";
+import { UserContext } from "../context/userContext";
+import { ProfileInfoCard } from "../Components/Cards";
 import { ArrowRight } from "lucide-react";
 import { Zap, Download } from "lucide-react";
+import Modal from "../components/Modal";
+import Login from "../components/Login";
+import SignUp from "../components/SignUp";
 
-const landingPage = () => {
-  const { user } = useContext(userContext);
+const LandingPage = () => {
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const [openAuthModal, setOpenAuthModal] = useState(false);
-  const [mobileMenuOpen, setmobileMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState("login");
 
   const handleCTA = () => {
@@ -65,7 +68,7 @@ const landingPage = () => {
         {/*Mobile menu */}
         {mobileMenuOpen && (
           <div className={landingPageStyles.mobileMenu}>
-            <div className={landingPageStyles.mobileMenuContent}>
+            <div className={landingPageStyles.mobileMenuContainer}>
               {user ? (
                 <div className={landingPageStyles.mobileUserInfo}>
                   <div className={landingPageStyles.mobileUserWelcome}>
@@ -371,11 +374,12 @@ const landingPage = () => {
             </div>
           </div>
         </section>
+        {/* features section  */}
         <section className={landingPageStyles.featuresSection}>
           <div className={landingPageStyles.featuresContainer}>
             <div className={landingPageStyles.featuresHeader}>
               <h2 className={landingPageStyles.featuresTitle}>
-                Why Choose{" "}
+                Why Choose
                 <span className={landingPageStyles.featuresTitleGradient}>
                   ResumeXpert?
                 </span>
@@ -443,7 +447,7 @@ const landingPage = () => {
               <div className={landingPageStyles.ctaCardBg}></div>
               <div className={landingPageStyles.ctaCardContent}>
                 <h2 className={landingPageStyles.ctaTitle}>
-                  Ready to Build Your{" "}
+                  Ready to Build Your
                   <span className={landingPageStyles.ctaTitleGradient}>
                     Standout Resume?
                   </span>
@@ -466,29 +470,40 @@ const landingPage = () => {
           </div>
         </section>
       </main>
-      {/* FOOTER */}
+      {/* FOOTER  SECTION*/}
       <footer className={landingPageStyles.footer}>
         <div className={landingPageStyles.footerContainer}>
           <p className={landingPageStyles.footerText}>
-            Crafted with <span className={landingPageStyles.footerHeart}>❤️</span> by{" "}
-            <a href="https://hexagondigitalservices.com" target= '_blank' className={landingPageStyles.footerLink}>
+            Crafted with
+            <span className={landingPageStyles.footerHeart}>❤️</span> by{" "}
+            <a
+              href="https://hexagondigitalservices.com"
+              target="_blank"
+              className={landingPageStyles.footerLink}
+            >
               Hexagon Digital Services
             </a>
           </p>
         </div>
       </footer>
       {/*  MODAL FOR LOGIN/SIGNUP */}
-      <Modal isOpen={openAuthModal} onClose={()=> {
-        setOpenAuthModal(false);
-        setCurrentPage("login");
-      }} hideHeader>
+      <Modal
+        isOpen={openAuthModal}
+        onClose={() => {
+          setOpenAuthModal(false);
+          setCurrentPage("login");
+        }}
+        hideHeader
+      >
         <div>
           {currentPage === "login" && <Login setCurrentPage={setCurrentPage} />}
-          {currentPage === "signup" && <SignUp setCurrentPage={setCurrentPage} />}
+          {currentPage === "signup" && (
+            <SignUp setCurrentPage={setCurrentPage} />
+          )}
         </div>
       </Modal>
     </div>
   );
 };
 
-export default landingPage;
+export default LandingPage;

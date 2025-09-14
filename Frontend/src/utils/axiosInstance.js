@@ -32,7 +32,7 @@ axiosInstance.interceptors.response.use(
     (error) => {
         if (error.response) {
             if(error.response.status === 401) {
-                window.location.href = "/login";
+                window.location.href = "/";
             }
             else if(error.response.status === 500) {
                 console.error("Server Error");
