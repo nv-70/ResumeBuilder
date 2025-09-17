@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LayoutTemplate, Menu, X } from "lucide-react";
 import { landingPageStyles } from "../assets/dummystyle";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../context/UserContext.jsx";
 import { ProfileInfoCard } from "../Components/Cards";
 import { ArrowRight } from "lucide-react";
 import { Zap, Download } from "lucide-react";
