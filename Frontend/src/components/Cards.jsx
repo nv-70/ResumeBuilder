@@ -4,7 +4,7 @@ import { cardStyles } from "../assets/dummystyle";
 import { useState } from "react";
 import { Edit, Trash2, Clock, Award, TrendingUp, Zap } from "lucide-react";
 import { Check } from "lucide-react";
-import { UserContext } from "../context/userContext";
+import { UserContext } from "../context/UserContext";
 // PROFILE INFO CARDS
 export const ProfileInfoCard = ({ title, content }) => {
   const navigate = useNavigate();

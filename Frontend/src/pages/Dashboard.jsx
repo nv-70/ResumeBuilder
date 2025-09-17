@@ -9,7 +9,7 @@ import { ResumeSummaryCard } from "../Components/Cards";
 import toast from "react-hot-toast";
 import { differenceInDays } from "date-fns";
 import CreateResumeForm from "../Components/CreateResumeForm";
-import Modal from "../components/Modal";
+import Modal from "../Components/Modal";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [openCreateModal, setOpenCreateModal] = useState(false);

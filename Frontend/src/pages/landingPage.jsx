@@ -2,13 +2,13 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LayoutTemplate, Menu, X } from "lucide-react";
 import { landingPageStyles } from "../assets/dummystyle";
-import { UserContext } from "../context/userContext";
+import { UserContext } from "../context/UserContext";
 import { ProfileInfoCard } from "../Components/Cards";
 import { ArrowRight } from "lucide-react";
 import { Zap, Download } from "lucide-react";
-import Modal from "../components/Modal";
-import Login from "../components/Login";
-import SignUp from "../components/SignUp";
+import Modal from "../Components/Modal";
+import Login from "../Components/Login";
+import SignUp from "../Components/SignUp";
 
 const LandingPage = () => {
   const { user } = useContext(UserContext);
