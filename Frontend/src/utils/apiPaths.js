@@ -1,4 +1,4 @@
-export const BASE_URL = "https://resume-builder-rho-wheat.vercel.app/";
+export const BASE_URL = "https://resume-builder-rho-wheat.vercel.app";
 
 // Routes Used for Frontend
 
